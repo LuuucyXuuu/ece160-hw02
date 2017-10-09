@@ -14,9 +14,9 @@ void print_int_ranges() {
   short short_min = 1 << short_bytes * 8 - 1;
   short short_max = ~short_min;
   int int_min = 1 << int_bytes * 8 - 1;
-  int int_max = ~ int_min;
+  int int_max = ~int_min;
   unsigned int uint_min = 0;
-  unsigned int uint_max = 1 << uint_bytes * 8 - 1;
+  unsigned int uint_max = ~0;
   long long_min = 1L << long_bytes * 8 - 1;
   long long_max = ~long_min;
 
@@ -42,11 +42,19 @@ int is_bit_set(unsigned char v, unsigned char i) {
     fprintf(stderr, "Index out of range!\n");
     return 0;
   }
-
-  /*
-  TODO your implementation goes here!
-  */
-
+  
+  unsigned char mask = 1 << i;
+  unsigned char bitofvalue = v << 7 - i;
+  unsigned char bitofvalue2 = bitofvalue >> 7 ;
+  unsigned char bitofvalue3 = bitofvalue2 << i;
+  
+  if (mask == bitofvalue3) {
+	  return 1;
+  }
+	else {
+		return 0;
+	}
+	
   return 0;
 }
 
