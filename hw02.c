@@ -44,11 +44,8 @@ int is_bit_set(unsigned char v, unsigned char i) {
   }
   
   unsigned char mask = 1 << i;
-  unsigned char bitofvalue = v << 7 - i;
-  unsigned char bitofvalue2 = bitofvalue >> 7 ;
-  unsigned char bitofvalue3 = bitofvalue2 << i;
   
-  if (mask == bitofvalue3) {
+  if ((mask & v) > 0) {
 	  return 1;
   }
 	else {
